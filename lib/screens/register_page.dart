@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:to_do/screens/home_page.dart';
-import 'package:to_do/screens/register_page.dart';
+import 'package:to_do/screens/login_page.dart';
 import 'package:to_do/widgets/custome_button.dart';
 import 'package:to_do/widgets/custome_text_field.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailControler = TextEditingController();
     final TextEditingController passwordContrller = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: Padding(
@@ -29,10 +30,11 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "LoginScreen",
+              "RegisterScreen",
               style: TextStyle(color: Colors.white, fontSize: 30),
             ),
             SizedBox(height: 100),
+            customTextField(hint: "Name", controller: nameController),
             customTextField(
               hint: "Enter Your Email",
               controller: emailControler,
@@ -48,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => HomePage()),
                 );
               },
-              text: 'Login',
+              text: 'Register',
             ),
             GestureDetector(
               onTap: () {
