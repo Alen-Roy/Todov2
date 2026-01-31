@@ -1,14 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:to_do/repositories/auth_repository.dart';
+import '../repositories/auth_repository.dart';
 
-final authrepositoryProvider = Provider<AuthRepository>(
+final authRepositoryProvider = Provider<AuthRepository>(
   (ref) => AuthRepository(),
 );
+
 final authStateProvider =
     StateNotifierProvider<AuthNotifier, AsyncValue<User?>>((ref) {
-      final repo = ref.read(authStateProvider);
+      final repo = ref.read(authRepositoryProvider);
       return AuthNotifier(repo);
     });
 
@@ -24,6 +25,7 @@ class AuthNotifier extends StateNotifier<AsyncValue<User?>> {
       },
     );
   }
+
   Future<User?> signIn(String email, String password) async {
     state = const AsyncValue.loading();
     try {
